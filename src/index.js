@@ -3,6 +3,12 @@ const { join } = require('path')
 const { getCoordsFromFile } = require('./utils/xlsParser')
 const { saveCoordsToKMZ } = require('./utils/kmzSaver')
 
+const getFullPath = (scriptPath, fileName) => {
+  const arr = scriptPath.split('/')
+  arr.pop()
+  return join(arr.join('/'), fileName)
+}
+
 const run = async () => {
   console.log('waiting...')
   const fileName = process.argv[2]
@@ -11,7 +17,7 @@ const run = async () => {
     closeApp()
   }
 
-  const coords = getCoordsFromFile(join(__dirname, fileName))
+  const coords = getCoordsFromFile(getFullPath(process.argv[1], fileName))
   const isSaved = await saveCoordsToKMZ(coords)
   if (!isSaved) {
     console.log('saving file error')
