@@ -5,12 +5,18 @@
   "repository": "https://github.com/Abanderungsbedurftig/geotokmz.git",
   "author": "a.nikolkin",
   "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
   "dependencies": {
     "bluebird": "^3.7.2",
     "geojson": "^0.5.0",
     "gtran-kmz": "^1.1.4",
-    "install": "^0.13.0",
-    "npm": "^6.14.8",
     "xlsx": "^0.16.6"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-node-externals": "^2.5.2"
   }
 }
