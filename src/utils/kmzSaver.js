@@ -26,16 +26,16 @@ const generateFileName = () => {
   return `${date.getHours()}${date.getMinutes()}${date.getSeconds()}${date.getFullYear()}.${KMZ}`
 }
 
-const geoJSONToKMZ = (json) => {
+const geoJSONToKMZ = (json, title) => {
   return kmz.fromGeoJson(json, generateFileName(), {
       symbol: pointSymbol,
-      name: 'BS Locations',
+      name: title,
     })
     .then(() => true)
     .catch(() => false)
 }
 
-module.exports.saveCoordsToKMZ = async (coords) => {
-  const json = dataToGeoJSON(coords.map(coordToLocation))
+module.exports.saveCoordsToKMZ = async (coords, title) => {
+  const json = dataToGeoJSON(coords.map(coordToLocation), title)
   return geoJSONToKMZ(json)
 }
